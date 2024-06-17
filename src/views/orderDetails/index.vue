@@ -685,7 +685,7 @@ export default class extends Vue {
   getOrderListBy3Status() {
     getOrderListBy({})
       .then((res) => {
-        if (res.data.code === 1) {
+        if (res.data.code === 1||res.data.code === true) {
           this.orderStatics = res.data.data
         } else {
           this.$message.error(res.data.msg)
@@ -716,7 +716,7 @@ export default class extends Vue {
     }
     getOrderDetailPage({ ...params })
       .then((res) => {
-        if (res.data.code === 1) {
+        if (res.data.code === 1||res.data.code === true) {
           this.tableData = res.data.data.records
           this.orderStatus = activeIndex
           this.counts = Number(res.data.data.total)
@@ -793,7 +793,7 @@ export default class extends Vue {
 
     orderAccept({ id: this.orderId })
       .then((res) => {
-        if (res.data.code === 1) {
+        if (res.data.code === 1|| res.data.code === true) {
           this.$message.success('操作成功')
           this.orderId = ''
           // this.dialogOrderStatus = 0
@@ -848,7 +848,7 @@ export default class extends Vue {
         this.cancelReason === '自定义原因' ? this.remark : this.cancelReason,
     })
       .then((res) => {
-        if (res.data.code === 1) {
+        if (res.data.code === 1|| res.data.code === true) {
           this.$message.success('操作成功')
           this.cancelDialogVisible = false
           this.orderId = ''
@@ -872,7 +872,7 @@ export default class extends Vue {
     }
     ;(status === 3 ? deliveryOrder : completeOrder)(params)
       .then((res) => {
-        if (res.data.code === 1) {
+        if (res.data.code === 1|| res.data.code === true) {
           this.$message.success('操作成功')
           this.orderId = ''
           // this.dialogOrderStatus = 0

@@ -1,6 +1,6 @@
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators'
-import { login,userLogout } from '@/api/employee'
-import { getToken, setToken, removeToken,getStoreId, setStoreId, removeStoreId, setUserInfo, getUserInfo, removeUserInfo } from '@/utils/cookies'
+import { login, userLogout } from '@/api/employee'
+import { getToken, setToken, removeToken, getStoreId, setStoreId, removeStoreId, setUserInfo, getUserInfo, removeUserInfo } from '@/utils/cookies'
 import store from '@/store'
 import Cookies from 'js-cookie'
 import { Message } from 'element-ui'
@@ -64,7 +64,7 @@ class User extends VuexModule implements IUserState {
   @Mutation
   private SET_USERNAME(name: string) {
     this.username = name
-    }
+  }
 
   @Action
   public async Login(userInfo: { username: string, password: string }) {
@@ -73,7 +73,8 @@ class User extends VuexModule implements IUserState {
     this.SET_USERNAME(username)
     Cookies.set('username', username)
     const { data } = await login({ username, password })
-    if (String(data.code) === '1') {
+    // if (String(data.code) === '1') {
+    if (data.code === true) {
       // const dataParams = {
       //   // status: 200,
       //   token: data.data.token,
@@ -92,7 +93,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public ResetToken () {
+  public ResetToken() {
     removeToken()
     this.SET_TOKEN('')
     this.SET_ROLES([])
@@ -107,7 +108,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public async GetUserInfo () {
+  public async GetUserInfo() {
     if (this.token === '') {
       throw Error('GetUserInfo: token is undefined!')
     }
@@ -117,7 +118,7 @@ class User extends VuexModule implements IUserState {
       throw Error('Verification failed, please Login again.')
     }
 
-    const { roles, name, avatar, introduction, applicant, storeManagerName, storeId='' } = data // data.user
+    const { roles, name, avatar, introduction, applicant, storeManagerName, storeId = '' } = data // data.user
     // roles must be a non-empty array
     if (!roles || roles.length <= 0) {
       throw Error('GetUserInfo: roles must be a non-null array!')
@@ -131,7 +132,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public async LogOut () {
+  public async LogOut() {
     const { data } = await userLogout({})
     removeToken()
     this.SET_TOKEN('')

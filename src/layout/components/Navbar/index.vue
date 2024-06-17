@@ -137,15 +137,15 @@ export default class extends Vue {
     //     details: '434'
     //   }
     // }
-    this.getStatus()
+    // this.getStatus()
   }
   created() {
-    this.webSocket()
+    // this.webSocket()
   }
   onload() {
   }
   destroyed() {
-    this.websocket.close() //离开路由之后断开websocket连接
+    // this.websocket.close() //离开路由之后断开websocket连接
   }
 
   // 添加新订单提示弹窗
@@ -243,8 +243,9 @@ export default class extends Vue {
   }
   // 营业状态
   async getStatus() {
-    const { data } = await getStatus()
-    this.status = data.data
+    // const { data } = await getStatus()
+    // this.status = data.data
+    this.status = 1
     this.setStatus = this.status
   }
   // 下拉菜单显示

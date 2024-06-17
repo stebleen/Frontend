@@ -154,10 +154,10 @@ export default class extends Vue {
       categoryId: [
         { required: true, message: '请选择菜品分类', trigger: 'change' }
       ],
-      image: {
-        required: true,
-        message: '菜品图片不能为空'
-      },
+      // image: {
+      //   required: true,
+      //   message: '菜品图片不能为空'
+      // },
       price: [
         {
           required: true,
@@ -219,7 +219,7 @@ export default class extends Vue {
 
   private async init() {
     queryDishById(this.$route.query.id).then(res => {
-      if (res && res.data && res.data.code === 1) {
+      if (res && res.data && (res.data.code === 1||res.data.code === true)) {
         this.ruleForm = { ...res.data.data }
         this.ruleForm.price = String(res.data.data.price)
         this.ruleForm.status = res.data.data.status == '1'
@@ -276,7 +276,7 @@ export default class extends Vue {
   // 获取菜品分类
   private getDishList() {
     getCategoryList({ type: 1 }).then(res => {
-      if (res.data.code === 1) {
+      if (res.data.code === 1 || res.data.code === true) {
         this.dishList = res && res.data && res.data.data
       } else {
         this.$message.error(res.data.msg)
@@ -305,7 +305,7 @@ export default class extends Vue {
     ; (this.$refs[formName] as any).validate((valid: any) => {
       console.log(valid, 'valid')
       if (valid) {
-        if (!this.ruleForm.image) return this.$message.error('菜品图片不能为空')
+        //if (!this.ruleForm.image) return this.$message.error('菜品图片不能为空')
         let params: any = { ...this.ruleForm }
         // params.flavors = this.dishFlavors
         params.status =
@@ -321,7 +321,7 @@ export default class extends Vue {
           delete params.id
           addDish(params)
             .then(res => {
-              if (res.data.code === 1) {
+              if (res.data.code === 1|| res.data.code === true) {
                 this.$message.success('菜品添加成功！')
                 if (!st) {
                   this.$router.push({ path: '/dish' })
@@ -354,7 +354,7 @@ export default class extends Vue {
           delete params.updateTime
           editDish(params)
             .then(res => {
-              if (res && res.data && res.data.code === 1) {
+              if (res && res.data && (res.data.code === 1|| res.data.code === true)) {
                 this.$router.push({ path: '/dish' })
                 this.$message.success('菜品修改成功！')
               } else {

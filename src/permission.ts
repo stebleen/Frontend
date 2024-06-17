@@ -8,6 +8,8 @@ import Cookies from 'js-cookie'
 
 NProgress.configure({ 'showSpinner': false })
 
+/*
+// 全局前置守卫
 router.beforeEach(async (to: Route, _: Route, next: any) => {
   NProgress.start()
   if (Cookies.get('token')) {
@@ -20,6 +22,8 @@ router.beforeEach(async (to: Route, _: Route, next: any) => {
     }
   }
 })
+  */
+
 
 router.afterEach((to: Route) => {
   NProgress.done()

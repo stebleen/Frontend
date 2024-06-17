@@ -576,7 +576,7 @@ export default class extends Vue {
     this.dialogOrderStatus = row.status
     orderAccept({ id: this.orderId })
       .then((res) => {
-        if (res.data.code === 1) {
+        if (res.data.code === 1||res.data.code === true) {
           this.$message.success('操作成功')
           this.orderId = ''
           // this.dialogOrderStatus = 0

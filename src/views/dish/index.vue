@@ -207,7 +207,7 @@ export default class extends Vue {
       status: this.dishStatus
     })
       .then(res => {
-        if (res.data.code === 1) {
+        if (res.data.code === 1|| res.data.code === true) {
           this.tableData = res.data && res.data.data && res.data.data.records
           this.counts = Number(res.data.data.total)
         }
@@ -240,7 +240,7 @@ export default class extends Vue {
     }).then(() => {
       deleteDish(type === '批量' ? this.checkList.join(',') : id)
         .then(res => {
-          if (res && res.data && res.data.code === 1) {
+          if (res && res.data && (res.data.code === 1||res.data.code === true)) {
             this.$message.success('删除成功！')
             this.init()
           } else {
@@ -258,11 +258,12 @@ export default class extends Vue {
       type: 1
     })
       .then(res => {
-        if (res && res.data && res.data.code === 1) {
+        if (res && res.data && (res.data.code === 1||res.data.code ===true)) {
           this.dishCategoryList = (
-            res.data &&
-            res.data.data &&
-            res.data.data
+            res.data
+            // res.data &&
+            // res.data.data &&
+            // res.data.data
           ).map(item => {
             return { value: item.id, label: item.name }
           })
@@ -294,7 +295,7 @@ export default class extends Vue {
       // 起售停售---批量起售停售接口
       dishStatusByStatus(this.dishState)
         .then(res => {
-          if (res && res.data && res.data.code === 1) {
+          if (res && res.data && (res.data.code === 1||res.data.code === true)) {
             this.$message.success('菜品状态已经更改成功！')
             this.init()
           } else {

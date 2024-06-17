@@ -80,7 +80,7 @@ export default class extends Vue {
         this.loading = true
         await UserModule.Login(this.loginForm as any)
           .then((res: any) => {
-            if (String(res.code) === '1') {
+            if (String(res.code) === '1'||res.code===true) {
               this.$router.push('/')
             } else {
               // this.$message.error(res.msg)

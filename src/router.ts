@@ -39,28 +39,29 @@ const router = new Router({
     {
       path: "/",
       component: Layout,
-      redirect: "/dashboard",
+      // redirect: "/dashboard",
+      redirect: "/order",
       children: [
-        {
-          path: "dashboard",
-          component: () =>
-            import(/* webpackChunkName: "dashboard" */ "@/views/dashboard/index.vue"),
-          name: "Dashboard",
-          meta: {
-            title: "工作台",
-            icon: "dashboard",
-            affix: true
-          }
-        },
-        {
-          path: "/statistics",
-          component: () =>
-            import(/* webpackChunkName: "shopTable" */ "@/views/statistics/index.vue"),
-          meta: {
-            title: "数据统计",
-            icon: "icon-statistics"
-          }
-        },
+        // {
+        //   path: "dashboard",
+        //   component: () =>
+        //     import(/* webpackChunkName: "dashboard" */ "@/views/dashboard/index.vue"),
+        //   name: "Dashboard",
+        //   meta: {
+        //     title: "工作台",
+        //     icon: "dashboard",
+        //     affix: true
+        //   }
+        // },
+        // {
+        //   path: "/statistics",
+        //   component: () =>
+        //     import(/* webpackChunkName: "shopTable" */ "@/views/statistics/index.vue"),
+        //   meta: {
+        //     title: "数据统计",
+        //     icon: "icon-statistics"
+        //   }
+        // },
         {
           path: "order",
           component: () =>
@@ -107,25 +108,25 @@ const router = new Router({
             icon: "icon-category"
           }
         },
-        {
-          path: "employee",
-          component: () =>
-            import(/* webpackChunkName: "shopTable" */ "@/views/employee/index.vue"),
-          meta: {
-            title: "员工管理",
-            icon: "icon-employee"
-          }
-        },
+        // {
+        //   path: "employee",
+        //   component: () =>
+        //     import(/* webpackChunkName: "shopTable" */ "@/views/employee/index.vue"),
+        //   meta: {
+        //     title: "员工管理",
+        //     icon: "icon-employee"
+        //   }
+        // },
 
-        {
-          path: "/employee/add",
-          component: () =>
-            import(/* webpackChunkName: "dashboard" */ "@/views/employee/addEmployee.vue"),
-          meta: {
-            title: "添加员工",
-            hidden: true
-          }
-        },
+        // {
+        //   path: "/employee/add",
+        //   component: () =>
+        //     import(/* webpackChunkName: "dashboard" */ "@/views/employee/addEmployee.vue"),
+        //   meta: {
+        //     title: "添加员工",
+        //     hidden: true
+        //   }
+        // },
 
         {
           path: "/setmeal/add",

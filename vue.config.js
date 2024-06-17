@@ -19,12 +19,13 @@ module.exports = {
   },
   // 开启代理
   devServer: {
-    host:'0.0.0.0',
+    host: '0.0.0.0',
     public: '0.0.0.0:8888', // 本地的ip:端口号
     port: 8888,
+    // port: 5000,
     open: true,
-    disableHostCheck:true,
-    hot:true,//自动保存
+    disableHostCheck: true,
+    hot: true,//自动保存
     overlay: {
       warnings: false,
       errors: true
@@ -35,8 +36,8 @@ module.exports = {
         ws: false,
         secure: false,
         changeOrigin: true,
-        pathRewrite:{
-          '^/api':''
+        pathRewrite: {
+          '^/api': ''
         }
       }
     }
@@ -58,5 +59,5 @@ module.exports = {
     },
     // 启用 CSS modules for all css / pre-processor files.
     modules: false,
-},
+  },
 };

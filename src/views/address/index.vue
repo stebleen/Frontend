@@ -249,7 +249,7 @@ export default class extends Vue {
     }).then(() => {
       deleAddress(id)
         .then(res => {
-          if (res.data.code === 1) {
+          if (res.data.code === 1||res.data.code === true) {
             this.$message.success('删除成功！')
             this.init()
           } else {
@@ -278,7 +278,7 @@ export default class extends Vue {
             campusCode: this.classData.campusCode
           })
             .then(res => {
-              if (res.data.code === 1) {
+              if (res.data.code === 1||res.data.code === true) {
                 this.$message.success('地址添加成功！')
                 this.$refs.classData.resetFields()
                 if (!st) {
@@ -305,7 +305,7 @@ export default class extends Vue {
             campusCode: this.classData.campusCode
           })
             .then(res => {
-              if (res.data.code === 1) {
+              if (res.data.code === 1||res.data.code === true) {
                 this.$message.success('地址修改成功！')
                 this.classData.dialogVisible = false
                 this.$refs.classData.resetFields()

@@ -194,7 +194,7 @@ export default class extends Vue {
       type: this.categoryType ? this.categoryType : undefined
     })
       .then(res => {
-        if (String(res.data.code) === '1') {
+        if (String(res.data.code) === '1'||res.data.code===true) {
           this.tableData =
             res && res.data && res.data.data && res.data.data.records
           this.counts = Number(res.data.data.total)
@@ -275,7 +275,7 @@ export default class extends Vue {
     }).then(() => {
       deleCategory(id)
         .then(res => {
-          if (res.data.code === 1) {
+          if (res.data.code === 1||res.data.code === true) {
             this.$message.success('删除成功！')
             this.init()
           } else {
@@ -303,7 +303,7 @@ export default class extends Vue {
             sort: this.classData.sort
           })
             .then(res => {
-              if (res.data.code === 1) {
+              if (res.data.code === 1||res.data.code === true) {
                 this.$message.success('分类添加成功！')
                 this.$refs.classData.resetFields()
                 if (!st) {
@@ -328,7 +328,7 @@ export default class extends Vue {
             sort: this.classData.sort
           })
             .then(res => {
-              if (res.data.code === 1) {
+              if (res.data.code === 1||res.data.code === true) {
                 this.$message.success('分类修改成功！')
                 this.classData.dialogVisible = false
                 this.$refs.classData.resetFields()

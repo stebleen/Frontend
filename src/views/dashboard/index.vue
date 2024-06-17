@@ -103,7 +103,7 @@ export default class extends Vue {
   getOrderListBy3Status() {
     getOrderListBy({})
       .then((res) => {
-        if (res.data.code === 1) {
+        if (res.data.code === 1||res.data.code === true) {
           this.orderStatics = res.data.data
         } else {
           this.$message.error(res.data.msg)

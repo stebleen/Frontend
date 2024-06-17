@@ -55,7 +55,7 @@
           </el-form-item>
         </div>
         <div>
-          <el-form-item label="套餐图片:" required prop="image">
+          <el-form-item label="套餐图片:" prop="image">
             <image-upload :prop-image-url="imageUrl" @imageChange="imageChange">
               图片大小不超过2M<br>仅能上传 PNG JPEG JPG类型图片<br>建议上传200*200或300*300尺寸的图片
             </image-upload>
@@ -170,10 +170,10 @@ export default class extends Vue {
         message: '请选择套餐分类',
         trigger: 'change'
       },
-      image: {
-        required: true,
-        message: '菜品图片不能为空'
-      },
+      // image: {
+      //   required: true,
+      //   message: '菜品图片不能为空'
+      // },
       price: {
         required: true,
         // 'message': '请输入套餐价格',
@@ -205,7 +205,7 @@ export default class extends Vue {
 
   private async init() {
     querySetmealById(this.$route.query.id).then(res => {
-      if (res && res.data && res.data.code === 1) {
+      if (res && res.data && (res.data.code === 1||res.data.code === true)) {
         this.ruleForm = res.data.data
         this.ruleForm.status = res.data.data.status == '1'
           ; (this.ruleForm as any).price = res.data.data.price
@@ -225,7 +225,7 @@ export default class extends Vue {
   // 获取套餐分类
   private getDishTypeList() {
     getCategoryList({ type: 2, page: 1, pageSize: 1000 }).then(res => {
-      if (res && res.data && res.data.code === 1) {
+      if (res && res.data && (res.data.code === 1||res.data.code === true)) {
         this.setMealList = res.data.data.map((obj: any) => ({
           ...obj,
           idType: obj.id
@@ -288,7 +288,7 @@ export default class extends Vue {
         if (this.dishTable.length === 0) {
           return this.$message.error('套餐下菜品不能为空')
         }
-        if (!this.ruleForm.image) return this.$message.error('套餐图片不能为空')
+        // if (!this.ruleForm.image) return this.$message.error('套餐图片不能为空')
         let prams = { ...this.ruleForm } as any
         prams.setmealDishes = this.dishTable.map((obj: any) => ({
           copies: obj.copies,
@@ -304,7 +304,7 @@ export default class extends Vue {
           delete prams.id
           addSetmeal(prams)
             .then(res => {
-              if (res && res.data && res.data.code === 1) {
+              if (res && res.data && (res.data.code === 1||res.data.code === true)) {
                 this.$message.success('套餐添加成功！')
                 if (!st) {
                   this.$router.push({ path: '/setmeal' })
@@ -337,7 +337,7 @@ export default class extends Vue {
           delete prams.updateTime
           editSetmeal(prams)
             .then(res => {
-              if (res.data.code === 1) {
+              if (res.data.code === 1||res.data.code === true) {
                 this.$message.success('套餐修改成功！')
                 this.$router.push({ path: '/setmeal' })
               } else {
