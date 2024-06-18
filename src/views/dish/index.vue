@@ -260,10 +260,10 @@ export default class extends Vue {
       .then(res => {
         if (res && res.data && (res.data.code === 1||res.data.code ===true)) {
           this.dishCategoryList = (
-            res.data
-            // res.data &&
-            // res.data.data &&
-            // res.data.data
+            
+            res.data &&
+            res.data.data &&
+            res.data.data
           ).map(item => {
             return { value: item.id, label: item.name }
           })
